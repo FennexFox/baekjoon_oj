@@ -1,0 +1,5 @@
+len = int(input())
+
+for _ in range(len):
+    string = input()
+    print(string[0], string[-1], sep="")

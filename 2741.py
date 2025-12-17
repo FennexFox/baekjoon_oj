@@ -1,0 +1,1 @@
+[print(n+1) for n in range(int(input()))]
