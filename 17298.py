@@ -7,16 +7,13 @@ input = sys.stdin.readline
 print = sys.stdout.write
 
 len = int(input())
-list = list(map(int, input().split()))
+nums = list(map(int, input().split()))
+answer = [-1] * len
+stack = []
 
-for i in range(len):
-    now, temp = list[i], list[-1:i:-1]
-    
-    while temp and temp[-1] <= now:
-        temp.pop()
-        pass
-    
-    nge = str(temp[-1]) if temp else "-1"
-    nge += " "
-    
-    print(nge)
+for i, num in enumerate(nums):
+    while stack and nums[stack[-1]] < num:
+        answer[stack.pop()] = num
+    stack.append(i)
+
+print(" ".join(map(str, answer)))
