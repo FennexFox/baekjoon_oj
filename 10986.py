@@ -1,6 +1,6 @@
 # 나머지 합 (https://www.acmicpc.net/problem/10986)
-# Gold 3
-# Math, Prefix Sum
+# tier: Gold 3
+# tags: Math, Prefix Sum
 
 num_counter, denom = map(int, input().split())
 num = [int(x) for x in input().split()]

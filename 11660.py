@@ -1,6 +1,6 @@
 # 구간 합 구하기 5 (https://www.acmicpc.net/problem/11660)
-# Standard
-# Dynamic Programming, Prefix Sum
+# tier: Silver 1
+# tags: Dynamic Programming, Prefix Sum
 
 table_size, query_count = map(int, input().split())
 table_sum = [[0] * (table_size + 1) for _ in range(table_size + 1)]

@@ -1,6 +1,6 @@
 # 오큰수 (https://www.acmicpc.net/problem/17298)
-# Gold 4
-# Data Structure, Stack
+# tier: Gold 4
+# tags: Data Structure, Stack
 
 import sys
 input = sys.stdin.readline

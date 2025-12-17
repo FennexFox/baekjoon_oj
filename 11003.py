@@ -1,6 +1,6 @@
 # 나머지 합 (https://www.acmicpc.net/problem/11003)
-# Platinum 5
-# Data Structure, Prioirity Queue, Deque, Sliding Window Maximum using a Deque
+# tier: Platinum 5
+# tags: Data Structure, Priority Queue, Deque, Sliding Window Maximum using a Deque
 import sys
 from collections import deque
 input = sys.stdin.readline
