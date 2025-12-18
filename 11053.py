@@ -1,13 +1,14 @@
-# 곱셈  (https://www.acmicpc.net/problem/11053)
+# 가장 긴 증가하는 부분 수열 (https://www.acmicpc.net/problem/11053)
 # Silver 2
 # Dynamic Programming, Longest Increasing Subsequence
 
-_ = int(input())
+array_len = int(input())
 array = [int(i) for i in input().split()]
-sub_array = [array[0]]
+dp = [1] * array_len
 
-for i in array:
-    if i > sub_array[-1]:
-        sub_array.append(i)
+for i in range(array_len):
+    for j in range(i):
+        if array[j] < array[i]:
+            dp[i] = max(dp[i], dp[j] + 1)
 
-print(len(sub_array))
+print(max(dp))
