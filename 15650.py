@@ -5,19 +5,15 @@ import sys
 print = sys.stdout.write
 
 n, m = map(int, input().split())
-compbos = [[]]
+path = []
 
-def expand_array(n, arrays):
-    next = []
-    for array in arrays:
-        last = array[-1] if array else 0
-        next += [array + [num+1] for num in range(last, n)]
-    return next
+def dfs(start):
+    if len(path) == m:
+        print(" ".join(map(str, path)) + "\n")
+        return
+    for x in range(start, n+1):
+        path.append(x)
+        dfs(x+1)
+        path.pop()
 
-while len (compbos[-1]) < m:
-    compbos = expand_array(n, compbos)
-
-out = []
-for array in compbos:
-    out.append(" ".join(map(str, array)))
-print("\n".join(out))
+dfs(1)
