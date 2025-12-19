@@ -1,19 +1,23 @@
 # N과 M (2) (https://www.acmicpc.net/problem/15650)
 # tier: Silver 3
 # tags: Backtracking
+import sys
+print = sys.stdout.write
 
 n, m = map(int, input().split())
-m = min(m, n-m)
-num = denom = 1
+compbos = [[]]
 
-while m > 0:
-    num *= n
-    denom *= m
-    n -= 1
-    m -= 1
+def expand_array(n, arrays):
+    next = []
+    for array in arrays:
+        last = array[-1] if array else 0
+        next += [array + [num+1] for num in range(last, n)]
+    return next
 
-comb = num // denom
+while len (compbos[-1]) < m:
+    compbos = expand_array(n, compbos)
 
-
-
-lists = [] * comb
+out = []
+for array in compbos:
+    out.append(" ".join(map(str, array)))
+print("\n".join(out))
