@@ -7,17 +7,19 @@ print = sys.stdout.write
 
 n, m = map(int, input().split())
 nums = sorted(map(int, input().split()))
-visited = []
+path, visited = [], {num: False for num in nums}
 
-def dfs(visited):
-    if len(visited) == m:
-        out = " ".join(map(str, visited)) + "\n"
+def dfs():
+    if len(path) == m:
+        out = " ".join(map(str, path)) + "\n"
         print(out)
         return
     for num in nums:
-        if not num in visited:
-            visited.append(num)
-            dfs(visited)
-            visited.pop()
+        if not visited[num]:
+            path.append(num)
+            visited[num] = True
+            dfs()
+            path.pop()
+            visited[num] = False
 
-dfs(visited)
+dfs()
