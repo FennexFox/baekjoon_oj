@@ -9,25 +9,24 @@ n, m = map(int, input().split())
 nums = sorted(map(int, input().split()))
 nums = {i: num for i, num in enumerate(nums)}
 path, visited = [], {i: False for i in range(n)}
-answer, answer_map = [], dict()
+answer = []
 
-def get_combs():
-    if len(path) == m:
-        out = " ".join(map(str, path))
-        if not answer_map.get(out, False):
-            answer.append(out)
-            answer_map.update({out: True})
+def get_combs(depth):
+    if depth == m:
+        answer.append(" ".join(map(str, path)))
         return
-    else:
-        for i in nums:
-            if not visited[i]:
-                visited[i] = True
-                path.append(nums[i])
-                get_combs()
-                visited[i] = False
-                path.pop()
 
-get_combs()
+    last = None
+    for i in nums:
+        if visited[i] or last == nums[i]:
+            continue
+    
+        visited[i] = True
+        last = nums[i]
+        path.append(last)
+        get_combs(depth + 1)
+        visited[i] = False
+        path.pop()
 
-answer = "\n".join(answer)
-print(answer)
+get_combs(0)
+print("\n".join(answer))
