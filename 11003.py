@@ -1,4 +1,4 @@
-# 나머지 합 (https://www.acmicpc.net/problem/11003)
+# 최솟값 찾기 (https://www.acmicpc.net/problem/11003)
 # tier: Platinum 5
 # tags: Data Structure, Priority Queue, Deque, Sliding Window Maximum using a Deque
 import sys
