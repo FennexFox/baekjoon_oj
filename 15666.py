@@ -6,20 +6,15 @@ import sys
 print = sys.stdout.write
 
 _, m = map(int, input().split())
-nums = sorted(list(set(map(int, input().split()))))
-path, answer = [], []
+nums = sorted(set(map(int, input().split())))
+path = [0] * m
 
-def dfs(depth):
+def dfs(depth, start):
     if depth == m:
-        answer.append(" ".join(map(str, path)))
+        print(" ".join(map(str, path)) + "\n")
         return
-    else:
-        for num in nums:
-            if path and num < path[-1]:
-                continue
-            path.append(num)
-            dfs(depth+1)
-            path.pop()
+    for i in range(start, len(nums)):
+        path[depth] = nums[i]
+        dfs(depth + 1, i)
 
-dfs(0)
-print("\n".join(answer))
+dfs(0, 0)
