@@ -11,36 +11,30 @@ answer = []
 
 for _ in range(length):
     parent, left, right = input().split()
-    nodes[parent] = [left, right]
+    nodes[parent] = (left, right)
 
 def preorder(node):
+    if node == ".":
+        return
     answer.append(node)
-    for child in nodes[node]:
-        if child == ".":
-            continue
-        elif visited.get(child, True):
-            preorder(child)
-            visited[child] = False
+    left, right = nodes[node]
+    preorder(left)
+    preorder(right)
 
 def inorder(node):
-    for is_right, child in enumerate(nodes[node]):
-        if child == ".":
-            continue
-        elif visited.get(child, True):
-            if is_right:
-                answer.append(node)
-            inorder(child)
-            visited[child] = False
-    if node not in answer:
-        answer.append(node)
+    if node == ".":
+        return
+    left, right = nodes[node]
+    inorder(left)
+    answer.append(node)
+    inorder(right)
 
 def postorder(node):
-    for child in nodes[node]:
-        if child == ".":
-            continue
-        elif visited.get(child, True):
-            postorder(child)
-            visited[child] = False
+    if node == ".":
+        return
+    left, right = nodes[node]
+    postorder(left)
+    postorder(right)
     answer.append(node)
 
 order = [preorder, inorder, postorder]
