@@ -1,4 +1,4 @@
-# ATM (https://www.acmicpc.net/problem/11399)
+# 버블 소트 (https://www.acmicpc.net/problem/1517)
 # tier: Platinum 5
 # tags: Data Structure, Sort, Segment Tree, Divide and Conquer
 
