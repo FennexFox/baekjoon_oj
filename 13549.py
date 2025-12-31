@@ -2,26 +2,31 @@
 # tier: Gold 5
 # tags: Graph, Shortest Path, BPS, 0-1 BPS, Dijkstra
 
-import heapq
+from collections import deque
 
-INF = 10**6
+INF, MAX = 10**9, 10**5
 n, k = map(int, input().split())
 count = [INF] * 100001
-q = [[0, n]]
+count[n] = 0
+q = deque([n])
 
-while q:
-    steps, node = heapq.heappop(q)
-    if node == k:
-        break
-    if steps < count[node]:
-        count[node] = steps
-        next = [node-1, node+1]
-        for step in next:
-            if 0<=step and step<=100000 and count[step]:
-                heapq.heappush(q, [steps+1, step])
-        teleport = 2*node if 0<=node and node<=50000 else 0
-        if teleport:
-            heapq.heappush(q, [steps, teleport])
-                
+if n >= k:
+    print(n-k)
+else:
+    while q:
+        node = q.popleft()
+        steps = count[node]
 
-print(steps)
+        if node == k:
+            print(count[node])
+            break
+
+        teleport = 2*node if 0<=node and node<=MAX//2 else 0
+        if teleport and count[teleport] > steps:
+            q.appendleft(teleport)
+            count[teleport] = steps
+
+        for step in (node-1, node+1):
+            if 0<=step and step<=MAX and count[step] > steps+1:
+                q.append(step)
+                count[step] = steps+1

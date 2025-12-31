@@ -6,11 +6,11 @@ import sys
 input = sys.stdin.readline
 
 n, k = map(int, input().split())
-w_and_v = [list(map(int, input().split())) for _ in range(n)]
+w_and_v = [tuple(map(int, input().split())) for _ in range(n)]
 dp = [[-1 for _ in range(k+1)] for _ in range(n+1)]
 
 def kanpsack(n, k):
-    if n < 1:
+    if n < 1 or k < 1:
         return 0
     elif dp[n][k] != -1:
         return dp[n][k]
