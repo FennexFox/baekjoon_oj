@@ -6,8 +6,7 @@ import sys
 print = sys.stdout.write
 
 length = int(input())
-nodes, visited = dict(), dict()
-answer = []
+nodes, answer = dict(), []
 
 for _ in range(length):
     parent, left, right = input().split()
@@ -16,8 +15,8 @@ for _ in range(length):
 def preorder(node):
     if node == ".":
         return
-    answer.append(node)
     left, right = nodes[node]
+    answer.append(node)
     preorder(left)
     preorder(right)
 

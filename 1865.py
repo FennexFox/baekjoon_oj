@@ -1,6 +1,9 @@
 # 웜홀 (https://www.acmicpc.net/problem/1865)
 # tier: Gold 3
 # tags: Graph, Shortest Path, Bellman-Ford
+import sys
+input = sys.stdin.readline
+print = sys.stdout.write
 
 tc = int(input())
 
@@ -19,7 +22,7 @@ for _ in range(tc):
         edges.append((start, end, -time))
     
     negative_cycle = False
-    for i in range(1, n+2):
+    for i in range(1, n+1):
         is_updated = False
         for edge in edges:
             this_node, that_node, time = edge
@@ -29,7 +32,7 @@ for _ in range(tc):
         
         if not is_updated:
             break
-        elif is_updated and i == n+1:
+        elif is_updated and i == n:
             negative_cycle = True
     
-    print("YES" if negative_cycle else "NO")
+    print("YES\n" if negative_cycle else "NO\n")
