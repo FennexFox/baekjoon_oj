@@ -6,35 +6,30 @@ print = sys.stdout.write
 h, w = map(int, input().split())
 directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-this_xy = (0, 0)
-grid, visited = [], []
+this_xy = (-1, -1)
+dist = []
 for y in range(h):
     grid_row = list(map(int, input().split()))
-    visited_row = [False for _ in range(w)]
+    dist_row = [-1 if v else 0 for v in grid_row]
 
-    if 2 in grid_row:
-        target_x = grid_row.index(2) if 2 in grid_row else -1
-        this_xy = [target_x, y]
-        visited_row[target_x] = True
+    try:
+        target_x = grid_row.index(2)
+        dist_row[target_x] = 0
+        this_xy = (target_x, y)
+    except ValueError:
+        pass
 
-    grid.append(grid_row)
-    visited.append(visited_row)
+    dist.append(dist_row)
 
-dist = [[0 for _ in range(w)] for _ in range(h)]
 queue = deque([this_xy])
 while queue:
-    this_node = queue.popleft()
-    for direction in directions:
-        coord = (min(max(this_node[0]+direction[0],0),w-1),
-                min(max(this_node[1]+direction[1],0),h-1))
-        if not visited[coord[1]][coord[0]] and grid[coord[1]][coord[0]]:
-            visited[coord[1]][coord[0]] = True
-            dist[coord[1]][coord[0]] = dist[this_node[1]][this_node[0]] + 1
-            queue.append(coord)
+    this_x, this_y = queue.popleft()
+    this_dist = dist[this_y][this_x]
+    for direction_x, direction_y in directions:
+        coord_x = this_x+direction_x
+        coord_y = this_y+direction_y
+        if 0<=coord_x<w and 0<=coord_y<h and dist[coord_y][coord_x] == -1:
+            dist[coord_y][coord_x] = this_dist + 1
+            queue.append((coord_x, coord_y))
 
-for x in range(w):
-    for y in range(h):
-        if grid[y][x] == 1 and not dist[y][x]:
-            dist[y][x] = -1
-
-[print(" ".join(map(str, row))+"\n") for row in dist]
+print("\n".join(" ".join(map(str, row)) for row in dist))
