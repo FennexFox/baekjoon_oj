@@ -9,20 +9,21 @@ print = sys.stdout.write
 tests = int(input())
 out = []
 
+def solve():
+    _ = input()
+    stickers_0 = list(map(int, input().split()))
+    stickers_1 = list(map(int, input().split()))
+
+    that_0 = this_0 = that_1 = this_1 = 0
+    for s_0, s_1 in zip(stickers_0, stickers_1):
+        new_0 = max(this_1, that_1) + s_0
+        new_1 = max(this_0, that_0) + s_1
+        
+        that_0, that_1, this_0, this_1 = this_0, this_1, new_0, new_1
+
+    return str(max(this_0, this_1))
+
 for _ in range(tests):
-    columns = int(input())
-    stickers_0, stickers_1 = [list(map(int, input().split())) for _ in range(2)]
-    dp = [[0, 0], [0, 0]]
-    
-    for column in range(columns):
-        dp = [
-            dp[1],
-            [
-                max(dp[1][1], dp[0][1]) + stickers_0[column],
-                max(dp[1][0], dp[0][0]) + stickers_1[column]
-            ],
-        ]
-    
-    out.append(str(max(dp[1])))
+    out.append(solve())
 
 print("\n".join(out))
