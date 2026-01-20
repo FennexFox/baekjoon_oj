@@ -7,23 +7,15 @@ print = sys.stdout.write
 
 n = int(input())
 nums = list(map(int, input().split()))
-is_palindrome = [[True if i==j else False for j in range(n)] for i in range(n)]
+is_palindrome = [[False for _ in range(n)] for _ in range(n)]
 
-for center in range(n-1):
-    if nums[center] == nums[center+1]:
-        is_palindrome[center][center+1] = True
-    for offset in range(min(center, n-1-center)):
-        i, j = center - offset, center + offset
-        if not is_palindrome[i][j]:
-            break
-        if nums[i-1] == nums[j+1]:
-            is_palindrome[i-1][j+1] = True
-    for offset in range(min(center, n-2-center)):
-        i, j = center- offset, center + offset + 1
-        if not is_palindrome[i][j]:
-            break
-        if nums[i-1] == nums[j+1]:
-            is_palindrome[i-1][j+1] = True
+for center in range(n):
+    for is_even in (0, 1):
+        i, j = center, center + is_even
+        while i >= 0 and j < n and nums[i] == nums[j]:
+            is_palindrome[i][j] = True
+            i -= 1
+            j += 1
 
 m = int(input())
 for _ in range(m):
