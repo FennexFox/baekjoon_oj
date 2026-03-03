@@ -4,7 +4,7 @@
 
 ## 구조
 
-- `math/`, `dp/`, `data-structure/`, `graph/`, `string/`, `simulation/`: 주제별 풀이
+- `math/`, `dp/`, `data-structure/`, `graph/`, `string/`, `simulation/`, `implementation/`: 주제별 풀이
 - `unsolved/`: 미완성 풀이 보관
 - `templates/`: 자주 쓰는 템플릿 모음
 - `notes/`: 풀이 아이디어 및 메모
@@ -15,7 +15,7 @@
 아래 예시처럼 입력을 표준 입력으로 넘겨 실행합니다.
 
 ```bash
-python3 1000.py < input.txt
+python3 1000.py < input.txt > output.txt
 ```
 
 ## 실행 환경
