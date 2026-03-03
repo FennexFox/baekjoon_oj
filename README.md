@@ -4,7 +4,7 @@
 
 ## 구조
 
-- `math/`, `dp/`, `data-structure/`, `graph/`, `string/`, `simulation/`, `implementation/`: 주제별 풀이
+- `math/`, `dp/`, `data-structure/`, `graph/`, `string/`, `implementation/`: 주제별 풀이
 - `unsolved/`: 미완성 풀이 보관
 - `templates/`: 자주 쓰는 템플릿 모음
 - `notes/`: 풀이 아이디어 및 메모
